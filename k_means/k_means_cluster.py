@@ -1,7 +1,8 @@
 #!/usr/bin/python 
 
 """ 
-    Skeleton code for k-means clustering mini-project.
+    skeleton code for k-means clustering mini-project
+
 """
 
 
@@ -21,7 +22,7 @@ def Draw(pred, features, poi, mark_poi=False, name="image.png", f1_name="feature
     """ some plotting code designed to help you visualize your clusters """
 
     ### plot each cluster with a different color--add more colors for
-    ### drawing more than five clusters
+    ### drawing more than 4 clusters
     colors = ["b", "c", "k", "m", "g"]
     for ii, pp in enumerate(pred):
         plt.scatter(features[ii][0], features[ii][1], color = colors[pred[ii]])
@@ -57,20 +58,66 @@ poi, finance_features = targetFeatureSplit( data )
 ### in the "clustering with 3 features" part of the mini-project,
 ### you'll want to change this line to 
 ### for f1, f2, _ in finance_features:
-### (as it's currently written, the line below assumes 2 features)
+### (as it's currently written, line below assumes 2 features)
 for f1, f2 in finance_features:
     plt.scatter( f1, f2 )
 plt.show()
 
-### cluster here; create predictions of the cluster labels
-### for the data and store them to a list called pred
 
 
+from sklearn.cluster import KMeans
+features_list = ["poi", feature_1, feature_2]
+data2 = featureFormat(data_dict, features_list )
+poi, finance_features = targetFeatureSplit( data2 )
+clf = KMeans(n_clusters=2)
+pred = clf.fit_predict( finance_features )
+Draw(pred, finance_features, poi, name="clusters_before_scaling.pdf", f1_name=feature_1, f2_name=feature_2)
 
 
-### rename the "name" parameter when you change the number of features
-### so that the figure gets saved to a different file
 try:
     Draw(pred, finance_features, poi, mark_poi=False, name="clusters.pdf", f1_name=feature_1, f2_name=feature_2)
 except NameError:
     print "no predictions object named pred found, no clusters to plot"
+
+
+max_exercised_stock_option = 0;
+min_exercised_stock_option = 9223372036854775807;
+max_salary = 0;
+min_salary = 9223372036854775807;
+for j in data_dict:
+    if data_dict[j]["exercised_stock_options"]  != "NaN" and  data_dict[j]["exercised_stock_options"] > max_exercised_stock_option:
+        max_exercised_stock_option = data_dict[j]["exercised_stock_options"];
+    if data_dict[j]["exercised_stock_options"]  != "NaN" and  data_dict[j]["exercised_stock_options"] < min_exercised_stock_option:
+        min_exercised_stock_option = data_dict[j]["exercised_stock_options"];
+    if data_dict[j]["salary"]  != "NaN" and  data_dict[j]["salary"] > max_salary:
+        max_salary = data_dict[j]["salary"];
+    if data_dict[j]["salary"]  != "NaN" and  data_dict[j]["salary"] < min_salary:
+        min_salary = data_dict[j]["salary"];
+
+print "max exercised stock options",max_exercised_stock_option
+print "min exercised stock options", min_exercised_stock_option
+print "max salary",max_salary
+print "min salary", min_salary
+
+
+
+exercised_stock_options = []
+salary = []
+for i in data_dict:
+    if data_dict[i]["exercised_stock_options"] != 'NaN':
+        exercised_stock_options.append(float(data_dict[i]["exercised_stock_options"]))
+    if data_dict[i]["salary"] != 'NaN':
+        salary.append(float(data_dict[i]["salary"]))
+
+from sklearn.preprocessing import MinMaxScaler
+import numpy
+exercised_stock_options_ = numpy.array(exercised_stock_options)
+exercised_stock_options_ = exercised_stock_options_.astype(float)
+scaler = MinMaxScaler()
+rescaled_salary = scaler.fit_transform(exercised_stock_options_)
+
+values = numpy.array([[1000000.]])
+rescaled = scaler.transform(values)
+
+
+print rescaled

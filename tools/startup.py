@@ -13,12 +13,6 @@ try:
 except ImportError:
     print "you should install numpy before continuing"
 
-print "checking for scipy"
-try:
-    import scipy
-except:
-    print "you should install scipy before continuing"
-
 print "checking for sklearn"
 try:
     import sklearn

@@ -1,0 +1,91 @@
+1) Summarize for us the goal of this project and how machine learning is useful in trying to accomplish it.
+As part of your answer, give some background on the dataset and how it can be used to answer the project question.
+Were there any outliers in the data when you got it, and how did you handle those?
+
+Enron was a successful US company within the energy field. It collapsed suddenly totally due to major unorthodox financial operations
+performed by a set of individuals within the company. US authorities investigated and found out one of the biggest financial fraud in US history.
+This ended up in a total mess: enron bankrupty, long lasting trial and condemnation, hundred of sentence to jail and thousands of unemployed people.
+For the purpose of study and fraud detection, the financial data and emails of Enron were published online. The Enron corpus is nowadays one of the most studied
+dataset in machine learning.
+The aim of this project is to try to find out who was involved in the Enron fraud, ie person of interest (POI). The dataset can gives us hints on who got
+ abnormally large amount of money, who sent suspecious emails and how frequently...
+ This dataset is however not perfect, it contains errors,unrelavant or uncomplete data. To be able to get the most out of our data, it is importantto remove outliers what could mess with our results.
+By manually studying the dataset, i found one outlier: TOTAL which is not relevant for our case.
+I also decided to remove the data related to THE TRAVEL AGENCY IN THE PARK. This company could have been involved in the fraud but we are interested in actual people.
+Finally a lot of the data is incomplete. I counted 21 features in total. I filtered out all persons which have more than 17 features set to NaN.
+
+2) What features did you end up using in your POI identifier, and what selection process did you use to pick them?
+Did you have to do any scaling? Why or why not? As part of the assignment,
+you should attempt to engineer your own feature that does not come ready-made in the dataset
+-- explain what feature you tried to make, and the rationale behind it.
+(You do not necessarily have to use it in the final analysis, only engineer and test it.)
+In your feature selection step, if you used an algorithm like a decision tree,
+please also give the feature importances of the features that you use, and if you used an automated feature selection function like SelectKBest,
+please report the feature scores and reasons for your choice of parameter values.
+
+For this study, i decided to focus on financial/numerical data. Mainly because numbers are easier to manipulate and are not ambiguous for the detection of a POI:
+ a person willing to be part of a fraud does it for money.
+ I found it less obvious to detect POI from the email dataset. A secretary of a POI might be sending/receiving emails to/from the POI on daily basis. Her communication with POI may be high but does not make the secretary a POI.
+ We would need to parse the each email to detect potentially suspicious text but it is subject to interpretation.
+ The financial data is very much driven by two numbers: the salary, bonus and stock options. I decided to create a new composition feature annual cash, which is the sum of salary and bous.
+ I also used features total_stock_value and exercised_stock_options which seem to summarize well the stock side of the financial data.
+ deferred_income seem to have an impact as well, so i added it. I tried to remain with 5 features and selected them on a trial and error approach.
+
+
+
+3) What algorithm did you end up using? What other one(s) did you try?
+How did model performance differ between algorithms?
+
+I did not have a clear idea what algorithm to use, so i tried different algorithm with default settings (not tuned).
+Naive bayes, SVM, Random Forest, DecisionTree, AdaBoost with random forest, AdaBoost with Decision tree.
+
+here are my results:
+results(not tuned classifiers)
+----------------------------------
+
+Algorithm       Accuracy        Precision       Recall      F1          F2
+Naive Bayes     0.85843	        0.50594	        0.38350	    0.43629	    0.40301
+Random Forest   0.86143	        0.53043	        0.26150	    0.35030	    0.29101
+Decision Tree   0.81000	        0.33566	        0.33700	    0.33633	    0.33673
+AdaBoost-RF     0.85743	        0.50150	        0.33450	    0.40132	    0.35837
+AdaBoost-DT     0.81057	        0.33781	        0.33950	    0.33865	    0.33916
+
+Note: there is no result for SVM because it failed right away with a divide by zero error.
+
+Naive Bayes computes the fastest and gives acceptable results in terms of precision and recall
+My aim is to maximize the precision and recall which tell us how successful we were at tagging a person as a POI and who was actually a POI.
+The Adaboost classifier for random forest provides also good precision and recall but take very long to compute.
+Naive Bayes gives us good result without the need of complete parameter tuning,
+
+
+
+4) What does it mean to tune the parameters of an algorithm, and what can happen if you don’t do this well?
+How did you tune the parameters of your particular algorithm?
+(Some algorithms do not have parameters that you need to tune --
+if this is the case for the one you picked,
+identify and briefly explain how you would have done it for the model that was not your final choice or a different model
+that does utilize parameter tuning, e.g. a decision tree classifier).
+
+Tuning parameters means changing classifier internal parameter values to improve the results of our classifications.
+For example a classifier like Random Forest comes with several parameters such as n_estimators,criterion,max_features,max_depth...
+SKlearn provides default values for all the parameters but they might not be the most optimum ones for a particular dataset. It is then important to tune
+the parameters to improve performance and classification. Doing it wrong could result in overfitting and poor performance.
+It is clear that tuning those parameters can be very time consuming. To help automate the process sklearn provide different tools such as GridSearchCV to figure
+ out the best parameter values. By applying GridSearchCV on adaBoost i could improve the overall performance but not the actual results.
+
+
+5) What is validation, and what’s a classic mistake you can make if you do it wrong? How did you validate your analysis?
+
+Validation is an important stage in data analysis in order to assess the accuracy and performance of the chosen algorithm.
+To validate my results, i ran the provided tester.py script and it computed the following result for the selected naive bayes algorithm:
+Algorithm       Accuracy        Precision       Recall      F1          F2
+Naive Bayes     0.85843	        0.50594	        0.38350	    0.43629	    0.40301
+
+6) Give at least 2 evaluation metrics and your average performance for each of them.
+Explain an interpretation of your metrics that says something human-understandable about your algorithm’s performance.
+
+The primary metric is the recall. We want to flag only people that are really POI. The average recall for all my tests run is 0.3312. Naive bayes achieves the highest recall
+with value 0.38350. Precisionis the second metric of interest, with an everage of 0.44296. Naive bayes achives a good precision of 0.50594. This hints our ability to detect POI in general.
+
+
+

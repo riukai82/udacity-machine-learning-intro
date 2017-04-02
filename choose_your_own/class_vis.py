@@ -1,5 +1,8 @@
 #!/usr/bin/python
 
+import base64
+import json
+import subprocess
 import numpy as np
 import matplotlib.pyplot as plt
 import pylab as pl
@@ -35,9 +38,7 @@ def prettyPicture(clf, X_test, y_test):
 
     plt.savefig("test.png")
 
-import base64
-import json
-import subprocess
+
 
 def output_image(name, format, bytes):
     image_start = "BEGIN_IMAGE_f9825uweof8jw9fj4r8"

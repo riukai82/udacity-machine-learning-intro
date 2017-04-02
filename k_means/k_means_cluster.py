@@ -40,7 +40,7 @@ def Draw(pred, features, poi, mark_poi=False, name="image.png", f1_name="feature
 
 
 ### load in the dict of dicts containing all the data on each person in the dataset
-data_dict = pickle.load( open("../final_project/final_project_dataset.pkl", "r") )
+data_dict = pickle.load( open("../final_project/final_project_dataset.pkl", "rb") )
 ### there's an outlier--remove it! 
 data_dict.pop("TOTAL", 0)
 
@@ -77,7 +77,7 @@ Draw(pred, finance_features, poi, name="clusters_before_scaling.pdf", f1_name=fe
 try:
     Draw(pred, finance_features, poi, mark_poi=False, name="clusters.pdf", f1_name=feature_1, f2_name=feature_2)
 except NameError:
-    print "no predictions object named pred found, no clusters to plot"
+    print ("no predictions object named pred found, no clusters to plot")
 
 
 max_exercised_stock_option = 0;
@@ -94,10 +94,10 @@ for j in data_dict:
     if data_dict[j]["salary"]  != "NaN" and  data_dict[j]["salary"] < min_salary:
         min_salary = data_dict[j]["salary"];
 
-print "max exercised stock options",max_exercised_stock_option
-print "min exercised stock options", min_exercised_stock_option
-print "max salary",max_salary
-print "min salary", min_salary
+print ("max exercised stock options",max_exercised_stock_option)
+print ("min exercised stock options", min_exercised_stock_option)
+print ("max salary",max_salary)
+print ("min salary", min_salary)
 
 
 
@@ -120,4 +120,4 @@ values = numpy.array([[1000000.]])
 rescaled = scaler.transform(values)
 
 
-print rescaled
+print(rescaled)

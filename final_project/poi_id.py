@@ -40,16 +40,16 @@ features_list = ['poi',
                 ]
 
 ### Load the dictionary containing the dataset
-data_dict = pickle.load(open("final_project_dataset.pkl", "r") )
+data_dict = pickle.load(open("final_project_dataset.pkl", "rb") )
 
 ### Task 2
 ### Remove outliers
 ## TOTAL key to be dropped
-print "removing outlier: TOTAL"
+print("removing outlier: TOTAL")
 data_dict.pop('TOTAL', 0)
 
 ## this company could have been involved in the fraud but we are interested in actual people
-print "removing outlier: THE TRAVEL AGENCY IN THE PARK"
+print("removing outlier: THE TRAVEL AGENCY IN THE PARK")
 data_dict.pop('THE TRAVEL AGENCY IN THE PARK', 0)
 
 ## lets remove people with too much NaN values. We cannot say they are POI if no info about them
@@ -63,7 +63,7 @@ for key in data_dict:
 
 for counterKey in nanCounter :
     if (nanCounter[counterKey] > NAN_LIMIT) and not data_dict[counterKey]["poi"]:
-        print "removing outlier:", counterKey
+        print("removing outlier:", counterKey)
         data_dict.pop(counterKey, 0)
 
 ### Task 3

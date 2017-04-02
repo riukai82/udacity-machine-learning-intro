@@ -18,7 +18,7 @@ import sys
 import pickle
 sys.path.append("../tools/")
 from feature_format import featureFormat, targetFeatureSplit
-dictionary = pickle.load( open("../final_project/final_project_dataset_modified.pkl", "r") )
+dictionary = pickle.load( open("../final_project/final_project_dataset_modified.pkl", "rb") )
 
 ### list the features you want to look at--first item in the 
 ### list will be the "target" feature
@@ -41,10 +41,10 @@ reg.fit(feature_train, target_train)
 train_score = reg.score(feature_train , target_train)
 test_score = reg.score(feature_test , target_test)
 
-print "scope: ", reg.coef_[0]
-print "intercept", reg.intercept_
-print "train score", train_score
-print "test score", test_score
+print("scope: ", reg.coef_[0])
+print("intercept", reg.intercept_)
+print("train score", train_score)
+print("test score", test_score)
 
 
 
@@ -73,7 +73,7 @@ except NameError:
     pass
 
 reg.fit(feature_test, target_test)
-print "scope: ", reg.coef_[0]
+print("scope: ", reg.coef_[0])
 plt.plot(feature_train, reg.predict(feature_train), color="b")
 plt.xlabel(features_list[1])
 plt.ylabel(features_list[0])

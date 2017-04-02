@@ -23,13 +23,13 @@ from sklearn.metrics import accuracy_score
 features_train, features_test, labels_train, labels_test = preprocess()
 
 
-print "amount of features:", len(features_train[0])
+print("amount of features:", len(features_train[0]))
 
 #########################################################
 clf = tree.DecisionTreeClassifier(min_samples_split=40)
 clf = clf.fit(features_train,labels_train)
 pred = clf.predict(features_test)
-print accuracy_score(labels_test, pred)
+print(accuracy_score(labels_test, pred))
 #########################################################
 
 

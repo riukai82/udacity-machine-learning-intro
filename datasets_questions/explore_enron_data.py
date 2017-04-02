@@ -17,7 +17,7 @@
 
 import pickle
 
-enron_data = pickle.load(open("../final_project/final_project_dataset.pkl", "r"))
+enron_data = pickle.load(open(file="../final_project/final_project_dataset.pkl", mode="rb"))
 dataset_length = len(enron_data)
 features_length = len(enron_data["SKILLING JEFFREY K"])
 
@@ -44,18 +44,18 @@ for j in enron_data:
     if enron_data[j]["exercised_stock_options"]  != "NaN" and  enron_data[j]["exercised_stock_options"] < min_exercised_stock_option:
         min_exercised_stock_option = enron_data[j]["exercised_stock_options"];
 
-print "amount of people in dataset:", dataset_length
-print "amount of features:", features_length
-print "amount of persons of interest:", poi_count
-print "James Prentice total stock value:", enron_data["PRENTICE JAMES"]["total_stock_value"]
-print "emails from Wesley Colwell to poi:", enron_data["COLWELL WESLEY"]["from_this_person_to_poi"]
-print "value stock options of Jeffrey Skilling", enron_data["SKILLING JEFFREY K"]["exercised_stock_options"]
-print "total payment to Jeffrey Skilling", enron_data["SKILLING JEFFREY K"]["total_payments"]
-print "total payment to Kenneth Lay", enron_data["LAY KENNETH L"]["total_payments"]
-print "total payment to Andrew fastow", enron_data["FASTOW ANDREW S"]["total_payments"]
-print "amount of people with quantified salaries:", quantified_salary
-print "amount of people with emails:", known_email_address
-print "amount of people with undefined payment:", undefined_payment
-print "amount of poi with undefined payment:", poi_undefined_payment
-print "max exercised stock options",max_exercised_stock_option
-print "min exercised stock options", min_exercised_stock_option
+print("amount of people in dataset:", dataset_length)
+print("amount of features:", features_length)
+print("amount of persons of interest:", poi_count)
+print("James Prentice total stock value:", enron_data["PRENTICE JAMES"]["total_stock_value"])
+print("emails from Wesley Colwell to poi:", enron_data["COLWELL WESLEY"]["from_this_person_to_poi"])
+print("value stock options of Jeffrey Skilling", enron_data["SKILLING JEFFREY K"]["exercised_stock_options"])
+print("total payment to Jeffrey Skilling", enron_data["SKILLING JEFFREY K"]["total_payments"])
+print("total payment to Kenneth Lay", enron_data["LAY KENNETH L"]["total_payments"])
+print("total payment to Andrew fastow", enron_data["FASTOW ANDREW S"]["total_payments"])
+print("amount of people with quantified salaries:", quantified_salary)
+print ("amount of people with emails:", known_email_address)
+print ("amount of people with undefined payment:", undefined_payment)
+print ("amount of poi with undefined payment:", poi_undefined_payment)
+print ("max exercised stock options",max_exercised_stock_option)
+print ("min exercised stock options", min_exercised_stock_option)

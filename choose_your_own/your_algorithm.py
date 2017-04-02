@@ -39,7 +39,7 @@ clf = AdaBoostClassifier(algorithm='SAMME',
 
 clf.fit(features_train,labels_train)
 pred = clf.predict(features_test)
-print accuracy_score(labels_test, pred)
+print(accuracy_score(labels_test, pred))
 
 
 try:

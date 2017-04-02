@@ -28,17 +28,17 @@ t0 = time()
 #features_train = features_train[:len(features_train)/100]
 #labels_train = labels_train[:len(labels_train)/100]
 clf.fit(features_train,labels_train)
-print "training time:", round(time()-t0, 3), "s"
+print ("training time:", round(time()-t0, 3), "s")
 t1 = time()
 pred = clf.predict(features_test)
-print "predict time:", round(time()-t1, 3), "s"
-print accuracy_score(labels_test, pred)
+print ("predict time:", round(time()-t1, 3), "s")
+print (accuracy_score(labels_test, pred))
 chris_email_count=0;
 for prediction in pred:
     if prediction == 1:
         chris_email_count = chris_email_count +1
 
-print "predicted count of emails from Chris", chris_email_count
+print ("predicted count of emails from Chris", chris_email_count)
 
 
 

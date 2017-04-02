@@ -9,8 +9,8 @@ numpy.random.seed(42)
 ### these files should have been created from the previous (Lesson 10) mini-project.
 words_file = "../text_learning/your_word_data.pkl" 
 authors_file = "../text_learning/your_email_authors.pkl"
-word_data = pickle.load( open(words_file, "r"))
-authors = pickle.load( open(authors_file, "r") )
+word_data = pickle.load( open(words_file, "rb"))
+authors = pickle.load( open(authors_file, "rb") )
 
 
 
@@ -41,13 +41,13 @@ from sklearn.metrics import accuracy_score
 clf = tree.DecisionTreeClassifier(min_samples_split=40)
 clf = clf.fit(features_train,labels_train)
 pred = clf.predict(features_test)
-print accuracy_score(labels_test, pred)
+print (accuracy_score(labels_test, pred))
 count = -1
 for importance in clf.feature_importances_:
     count = count + 1
     if (importance > 0.2):
-        print "feature number", count
-        print "feature importance ratio", importance
-        print feature_names[count]
+        print ("feature number", count)
+        print ("feature importance ratio", importance)
+        print (feature_names[count])
 
 

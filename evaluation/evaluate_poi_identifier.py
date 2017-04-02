@@ -22,7 +22,7 @@ from sklearn.cross_validation import train_test_split
 from sklearn.metrics import recall_score
 from sklearn.metrics import precision_score
 
-data_dict = pickle.load(open("../final_project/final_project_dataset.pkl", "r") )
+data_dict = pickle.load(open("../final_project/final_project_dataset.pkl", "rb") )
 
 ### add more features to features_list!
 features_list = ["poi", "salary"]
@@ -34,10 +34,10 @@ features_train, features_test, labels_train, labels_test = train_test_split(feat
 clf = tree.DecisionTreeClassifier()
 clf = clf.fit(features_train, labels_train)
 pred = clf.predict(features_test)
-print "pred",pred
-print "labels", labels_test
-print accuracy_score(labels_test, pred)
-print "recall", recall_score(labels_test, pred)
-print "precision", precision_score(labels_test, pred)
+print ("pred",pred)
+print ("labels", labels_test)
+print (accuracy_score(labels_test, pred))
+print ("recall", recall_score(labels_test, pred))
+print ("precision", precision_score(labels_test, pred))
 
 

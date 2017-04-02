@@ -18,7 +18,7 @@ from sklearn import tree
 from sklearn.metrics import accuracy_score
 from sklearn.cross_validation import train_test_split
 
-data_dict = pickle.load(open("../final_project/final_project_dataset.pkl", "r") )
+data_dict = pickle.load(open("../final_project/final_project_dataset.pkl", "rb") )
 
 ### first element is our labels, any added elements are predictor
 ### features. Keep this the same for the mini-project, but you'll
@@ -31,7 +31,7 @@ features_train, features_test, labels_train, labels_test = train_test_split(feat
 clf = tree.DecisionTreeClassifier()
 clf = clf.fit(features_train, labels_train)
 pred = clf.predict(features_test)
-print accuracy_score(labels_test, pred)
+print(accuracy_score(labels_test, pred))
 
 
 

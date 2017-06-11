@@ -1,7 +1,5 @@
-#!/usr/bin/python
-
 """ 
-    starter code for exploring the Enron dataset (emails + finances) 
+    starter code for exploring the Enron dataset (emails + finances)
     loads up the dataset (pickled dict of dicts)
 
     the dataset has the form
@@ -12,7 +10,7 @@
     but here's an example to get you started:
 
     enron_data["SKILLING JEFFREY K"]["bonus"] = 5600000
-    
+
 """
 
 import pickle

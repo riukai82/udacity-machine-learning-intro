@@ -25,7 +25,7 @@ def parseOutText(f):
     words = ""
     if len(content) > 1:
         ### remove punctuation
-        text_string = content[1].translate(string.maketrans("", ""), string.punctuation)
+        text_string = content[1].translate(str.maketrans("", ""))
 
         ### project part 2: comment out the line below
         all_words = text_string.split()
@@ -48,9 +48,9 @@ def parseOutText(f):
     
 
 def main():
-    ff = open("../text_learning/test_email.txt", "rb")
-    text = parseOutText(ff)
-    print(text)
+    with open("../text_learning/test_email.txt", "rw") as ff:
+        text = parseOutText(ff)
+        print(text)
 
 
 

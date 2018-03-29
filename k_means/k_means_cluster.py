@@ -7,11 +7,8 @@ skeleton code for k-means clustering mini-project
 """
 
 import pickle
-import numpy
 import matplotlib.pyplot as plt
-import sys
-sys.path.append("../tools/")
-from feature_format import featureFormat, targetFeatureSplit
+from tools.feature_format import featureFormat, targetFeatureSplit
 
 def Draw(pred, features, poi, mark_poi=False, name="image.png", f1_name="feature 1", f2_name="feature 2"):
     """ some plotting code designed to help you visualize your clusters """

@@ -5,7 +5,7 @@ import numpy
 import matplotlib.pyplot as plt
 import pickle
 
-from outlier_cleaner import outlierCleaner
+from .outlier_cleaner import outlierCleaner
 
 
 ### load up some practice data with outliers in it

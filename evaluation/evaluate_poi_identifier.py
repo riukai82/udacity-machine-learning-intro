@@ -14,8 +14,7 @@
 
 import pickle
 import sys
-sys.path.append("../tools/")
-from feature_format import featureFormat, targetFeatureSplit
+from tools.feature_format import featureFormat, targetFeatureSplit
 from sklearn import tree
 from sklearn.metrics import accuracy_score
 from sklearn.cross_validation import train_test_split

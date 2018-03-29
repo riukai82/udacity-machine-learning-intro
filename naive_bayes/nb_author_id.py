@@ -1,10 +1,7 @@
 import sys
 import os
 from time import time
-scriptPath = os.path.realpath(os.path.dirname(sys.argv[0]))
-os.chdir(scriptPath)
-sys.path.append("../tools/")
-from email_preprocess import preprocess
+from tools.email_preprocess import preprocess
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score
 
